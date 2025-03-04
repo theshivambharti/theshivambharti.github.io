@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Generate Favicon</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="favicon" width="32" height="32"></canvas>
+    <canvas id="favicon16" width="16" height="16"></canvas>
+    <canvas id="appleIcon" width="180" height="180"></canvas>
+    <canvas id="android192" width="192" height="192"></canvas>
+    <canvas id="android512" width="512" height="512"></canvas>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+
+            // Clear the canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Create circular clip
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+            ctx.clip();
+
+            // Background
+            ctx.fillStyle = '#1b1f22';
+            ctx.fillRect(0, 0, size, size);
+
+            // Text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${size * 0.5}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SB', size / 2, size / 2);
+
+            // Optional: Add a subtle border
+            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+            ctx.lineWidth = size * 0.03;
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2 - ctx.lineWidth / 2, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // Generate different sizes
+        drawIcon(document.getElementById('favicon'), 32);
+        drawIcon(document.getElementById('favicon16'), 16);
+        drawIcon(document.getElementById('appleIcon'), 180);
+        drawIcon(document.getElementById('android192'), 192);
+        drawIcon(document.getElementById('android512'), 512);
+    </script>
+
+    <p>Right-click each canvas and save the image with the appropriate name:</p>
+    <ul>
+        <li>32x32 → favicon-32x32.png</li>
+        <li>16x16 → favicon-16x16.png</li>
+        <li>180x180 → apple-touch-icon.png</li>
+        <li>192x192 → android-chrome-192x192.png</li>
+        <li>512x512 → android-chrome-512x512.png</li>
+    </ul>
+    <p>For favicon.ico, save the 32x32 version and convert it to .ico format.</p>
+</body>
+
+</html>

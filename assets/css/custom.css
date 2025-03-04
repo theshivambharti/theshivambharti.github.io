@@ -1,0 +1,687 @@
+#logo {
+    font-size: 50px;
+    height: auto;
+}
+
+
+/* Particle heading styles */
+
+.particle-heading {
+    position: relative;
+    z-index: 1;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.content h1 {
+    position: relative;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+    }
+}
+
+
+/* Floating WhatsApp Button */
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    width: 2.75em;
+    height: 2.75em;
+    padding: 0;
+    border-radius: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25em;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    z-index: 9999;
+}
+
+.whatsapp-button:hover {
+    background-color: #ffffff;
+    color: #1b1f22;
+}
+
+
+/* WhatsApp Form */
+
+.whatsapp-form {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: rgba(27, 31, 34, 0.95);
+    border-radius: 4px;
+    padding: 0.5em;
+    width: 20em;
+    max-width: 100%;
+    display: none;
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    color: #ffffff;
+}
+
+.whatsapp-form .fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0.35em;
+}
+
+.whatsapp-form .field {
+    margin: 0;
+}
+
+.whatsapp-form input[type="text"],
+.whatsapp-form input[type="email"],
+.whatsapp-form textarea {
+    background: rgba(255, 255, 255, 0.075);
+    border: solid 1px rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    color: inherit;
+    outline: 0;
+    padding: 0.35em;
+    text-decoration: none;
+    width: 100%;
+    text-align: left;
+    margin: 0;
+}
+
+.whatsapp-form input[type="text"],
+.whatsapp-form input[type="email"] {
+    height: 2em;
+}
+
+.whatsapp-form textarea {
+    height: 65px;
+    resize: none;
+}
+
+.whatsapp-form .actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.35em;
+    margin: 0;
+}
+
+.whatsapp-form input[type="submit"],
+.whatsapp-form input[type="reset"] {
+    padding: 0 1em;
+    height: 2.25em;
+    line-height: 2.25em;
+    margin: 0;
+}
+
+
+/* Fix for card overflow */
+
+#work ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#work ul li {
+    margin-bottom: 1em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+#work ul li a {
+    display: inline-block;
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.4;
+    border-bottom: dotted 1px rgba(255, 255, 255, 0.35);
+}
+
+
+/* Article content overflow fix */
+
+article {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* Additional fixes for floating form */
+
+.whatsapp-form {
+    max-height: none;
+    overflow-y: visible;
+}
+
+.whatsapp-form .fields {
+    margin-bottom: 0.35em;
+}
+
+.whatsapp-form .field {
+    margin: 0;
+    margin-bottom: 0;
+}
+
+.whatsapp-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+
+/* Calculator Styles */
+
+.calculator {
+    background: rgba(27, 31, 34, 0.95) !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.calculator-display {
+    margin-bottom: 20px !important;
+}
+
+.calculator-display input {
+    width: 100% !important;
+    height: 50px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #00ffff !important;
+    font-size: 1.8em !important;
+    text-align: right !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important;
+    font-family: monospace !important;
+}
+
+.calculator-keys {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+}
+
+.calculator-keys button {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    font-size: 1.4em !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    height: 60px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.calculator-keys button:hover {
+    background: rgba(0, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2) !important;
+}
+
+.key-operator {
+    color: #00ffff !important;
+    font-weight: bold !important;
+}
+
+.key-equal {
+    grid-row: span 2 !important;
+    background: rgba(0, 255, 255, 0.15) !important;
+    color: #00ffff !important;
+}
+
+.key-zero {
+    grid-column: span 2 !important;
+}
+
+
+/* Tic Tac Toe Styles */
+
+.tictactoe-board {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+    max-width: 400px !important;
+    margin: 20px auto !important;
+    background: rgba(27, 31, 34, 0.95) !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.cell {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    font-size: 2.5em !important;
+    height: 100px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    border-radius: 8px !important;
+}
+
+.cell:hover:not(.x):not(.o) {
+    background: rgba(0, 255, 255, 0.1) !important;
+    transform: scale(0.98) !important;
+}
+
+.cell.x {
+    color: #00ffff !important;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important;
+}
+
+.cell.o {
+    color: #ff3366 !important;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.5) !important;
+}
+
+.cell.winner {
+    animation: celebrate 1s ease infinite !important;
+    background: rgba(0, 255, 255, 0.2) !important;
+    border-color: #00ffff !important;
+}
+
+@keyframes celebrate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.game-info {
+    text-align: center !important;
+    margin: 20px 0 !important;
+    font-size: 1.4em !important;
+    min-height: 1.5em !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+}
+
+.game-status {
+    transition: all 0.3s ease !important;
+    display: block !important;
+    margin-bottom: 20px !important;
+}
+
+.game-status.winner {
+    color: #00ffff !important;
+    font-size: 1.6em !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
+}
+
+
+/* Minesweeper Styles */
+
+.minesweeper-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+    padding: 20px !important;
+    background: rgba(27, 31, 34, 0.95) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+}
+
+#minesweeper-board {
+    display: grid !important;
+    gap: 2px !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: auto !important;
+    max-height: 70vh !important;
+}
+
+.minesweeper-cell {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease !important;
+    user-select: none !important;
+    font-family: monospace !important;
+    font-size: 1em !important;
+}
+
+.minesweeper-cell.revealed {
+    background: rgba(0, 0, 0, 0.2) !important;
+    cursor: default !important;
+}
+
+.minesweeper-cell.mine {
+    background: rgba(255, 0, 0, 0.3) !important;
+}
+
+.minesweeper-cell[data-number="1"] {
+    color: #3498db !important;
+}
+
+.minesweeper-cell[data-number="2"] {
+    color: #2ecc71 !important;
+}
+
+.minesweeper-cell[data-number="3"] {
+    color: #e74c3c !important;
+}
+
+.minesweeper-cell[data-number="4"] {
+    color: #9b59b6 !important;
+}
+
+.minesweeper-cell[data-number="5"] {
+    color: #f1c40f !important;
+}
+
+.minesweeper-cell[data-number="6"] {
+    color: #1abc9c !important;
+}
+
+.minesweeper-cell[data-number="7"] {
+    color: #e67e22 !important;
+}
+
+.minesweeper-cell[data-number="8"] {
+    color: #95a5a6 !important;
+}
+
+.minesweeper-controls {
+    display: flex !important;
+    gap: 10px !important;
+    width: 100% !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+}
+
+.minesweeper-controls select,
+.minesweeper-controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    text-align: center;
+}
+
+.minesweeper-info {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    font-size: 1.2em !important;
+    color: #fff !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    margin: 0 !important;
+}
+
+.minesweeper-info span {
+    min-width: 80px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+
+/* Snake Game Styles */
+
+.snake-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+    padding: 20px !important;
+    background: rgba(27, 31, 34, 0.95) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+#snake-board {
+    width: 400px !important;
+    height: 400px !important;
+    display: grid !important;
+    grid-template-columns: repeat(20, 1fr) !important;
+    grid-template-rows: repeat(20, 1fr) !important;
+    gap: 1px !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.snake-cell {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 2px !important;
+}
+
+.snake {
+    background: #00ffff !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5) !important;
+}
+
+.food {
+    background: #ff3366 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 5px rgba(255, 51, 102, 0.5) !important;
+}
+
+.snake-info {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 400px !important;
+    font-size: 1.2em !important;
+    color: #fff !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+.snake-info span {
+    min-width: 80px !important;
+    text-align: center !important;
+    font-family: monospace !important;
+    padding: 5px 10px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 4px !important;
+}
+
+.snake-controls {
+    display: flex !important;
+    gap: 10px !important;
+    margin-top: 20px !important;
+}
+
+
+/* Global Button Styles - Higher Specificity */
+
+button:not(.whatsapp-button):not(.minesweeper-cell),
+.button,
+input[type="submit"],
+input[type="reset"],
+.actions li a,
+.calculator-keys button,
+.minesweeper-controls button,
+.minesweeper-controls select,
+.reset-game,
+#new-game {
+    background: rgba(255, 255, 255, 0.075) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+    padding: 0.5em 1.5em !important;
+    font-size: 1.1em !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 45px !important;
+    text-decoration: none !important;
+    width: auto !important;
+    margin: 0.5em !important;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0) !important;
+}
+
+button:not(.whatsapp-button):not(.minesweeper-cell):hover,
+.button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.actions li a:hover,
+.calculator-keys button:hover,
+.minesweeper-controls button:hover,
+.minesweeper-controls select:hover,
+.reset-game:hover,
+#new-game:hover {
+    background: rgba(0, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important;
+    border-color: #00ffff !important;
+    color: #00ffff !important;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4) !important;
+}
+
+
+/* Primary Button Variant */
+
+button.primary,
+.button.primary,
+input[type="submit"].primary,
+.actions li a.primary,
+.key-equal {
+    background: rgba(0, 255, 255, 0.2) !important;
+    border-color: #00ffff !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
+    color: #00ffff !important;
+}
+
+
+/* Mobile Adjustments */
+
+@media screen and (max-width: 480px) {
+    .whatsapp-form {
+        width: calc(100% - 40px);
+        padding: 1em;
+        bottom: 70px;
+    }
+    .calculator {
+        max-width: 100% !important;
+        margin: 0 10px !important;
+    }
+    .calculator-keys button {
+        height: 50px !important;
+        font-size: 1.2em !important;
+    }
+    .cell {
+        height: 80px !important;
+        font-size: 2em !important;
+    }
+    .tictactoe-board {
+        max-width: 100% !important;
+        margin: 10px !important;
+    }
+    .minesweeper-cell {
+        width: 24px !important;
+        height: 24px !important;
+        min-width: 24px !important;
+        min-height: 24px !important;
+        font-size: 0.9em !important;
+    }
+    #minesweeper-board {
+        padding: 5px !important;
+        gap: 1px !important;
+    }
+    .minesweeper-info {
+        padding: 8px 12px !important;
+    }
+    .minesweeper-info span {
+        min-width: 60px !important;
+        font-size: 0.9em !important;
+        padding: 4px 6px !important;
+    }
+    #snake-board {
+        width: 300px !important;
+        height: 300px !important;
+    }
+    .snake-info {
+        width: 300px !important;
+        font-size: 1em !important;
+    }
+    button:not(.whatsapp-button):not(.minesweeper-cell),
+    .button,
+    input[type="submit"],
+    input[type="reset"],
+    .actions li a,
+    .calculator-keys button,
+    .minesweeper-controls button,
+    .minesweeper-controls select,
+    .reset-game,
+    #new-game {
+        font-size: 1em !important;
+        min-height: 40px !important;
+        padding: 0.4em 1.2em !important;
+    }
+}
