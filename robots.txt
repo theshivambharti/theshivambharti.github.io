@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /images/
+Allow: /sitemap.xml
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /assets/fonts/
+
+Sitemap: https://theshivambharti.github.io/shivambharti/sitemap.xml 

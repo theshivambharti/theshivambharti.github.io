@@ -1,0 +1,20 @@
+{
+    "name": "Shivam Bharti - Full Stack Developer",
+    "short_name": "Shivam Bharti",
+    "description": "Professional portfolio of Shivam Bharti - Full Stack Developer specializing in PHP, Laravel, and API integration.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2D9EF7",
+    "icons": [{
+            "src": "images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
