@@ -1,434 +1,1058 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Shivam Bharti - Backend Engineer & API Architect</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta charset="utf-8" />
+<title>Shivam Bharti — Senior PHP Backend Engineer</title>
+<meta name="description" content="Shivam Bharti — Senior PHP Backend Engineer, 6+ years building scalable Laravel, Node.js and ASP.NET systems, currently on the Government of India Road Asset Management System (RAMS)." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0E14'/%3E%3Ctext x='32' y='42' font-family='monospace' font-weight='700' font-size='26' fill='%23F5A623' text-anchor='middle'%3ESB%3C/text%3E%3C/svg%3E" />
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/custom.css" />
-    <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" />
-    </noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#0A0E14;
+  --bg-elev:#111823;
+  --bg-elev-2:#161F2B;
+  --border:#212B38;
+  --text:#E8EDF4;
+  --text-dim:#93A1B4;
+  --text-faint:#5D6B7E;
+  --accent:#F5A623;
+  --accent-dim:#8A6425;
+  --accent-2:#3FD9B9;
+  --danger:#F2545B;
+  --radius:10px;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --display: 'Space Grotesk', sans-serif;
+  --body: 'Inter', sans-serif;
+  --maxw: 1100px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--body); line-height:1.6; font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent); color:#111;}
+a{color:inherit;}
+img{max-width:100%; display:block;}
+h1,h2,h3{font-family:var(--display); margin:0; letter-spacing:-0.01em;}
+p{margin:0 0 1em;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+.bg-grid{
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse 80% 50% at 50% 0%, #000 40%, transparent 100%);
+}
+.bg-glow{
+  position:fixed; top:-200px; left:50%; transform:translateX(-50%);
+  width:900px; height:600px; z-index:-1; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(245,166,35,0.10), transparent 65%);
+}
+
+.eyebrow{
+  font-family:var(--mono); font-size:12.5px; color:var(--accent-2);
+  text-transform:uppercase; letter-spacing:0.12em; display:flex; align-items:center; gap:8px;
+  margin-bottom:14px;
+}
+.eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent-2); box-shadow:0 0 0 3px rgba(63,217,185,0.15);}
+.status-pill{
+  display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12.5px;
+  color:var(--accent-2); border:1px solid rgba(63,217,185,0.35); background:rgba(63,217,185,0.06);
+  padding:6px 12px; border-radius:100px;
+}
+.status-pill .pulse{width:7px; height:7px; border-radius:50%; background:var(--accent-2); animation:pulse 1.8s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(63,217,185,.5)}50%{opacity:.6;box-shadow:0 0 0 5px rgba(63,217,185,0)}}
+
+header#header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(10,14,20,0.85); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{max-width:var(--maxw); margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px;}
+.brand{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-weight:600; font-size:15px; text-decoration:none;}
+.brand .badge{
+  width:34px; height:34px; border-radius:8px; background:var(--bg-elev-2); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:13px;
+}
+nav#primary-nav ul{list-style:none; display:flex; gap:24px; margin:0; padding:0;}
+nav#primary-nav a{
+  text-decoration:none; color:var(--text-dim); font-family:var(--mono); font-size:13.5px;
+  letter-spacing:0.02em; transition:color .15s ease; position:relative;
+}
+nav#primary-nav a:hover, nav#primary-nav a:focus-visible{color:var(--text);}
+.nav-cta{
+  font-family:var(--mono); font-size:13px; color:var(--bg); background:var(--accent);
+  padding:9px 16px; border-radius:7px; text-decoration:none; font-weight:600;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(245,166,35,0.25);}
+.menu-toggle{display:none; background:none; border:1px solid var(--border); border-radius:7px; color:var(--text); width:38px; height:38px; align-items:center; justify-content:center;}
+
+@media (max-width:860px){
+  nav#primary-nav{position:fixed; inset:60px 0 0 0; background:var(--bg); border-top:1px solid var(--border); padding:28px 24px; transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; overflow-y:auto;}
+  nav#primary-nav.open{opacity:1; transform:translateY(0); pointer-events:auto;}
+  nav#primary-nav ul{flex-direction:column; gap:20px;}
+  nav#primary-nav a{font-size:16px;}
+  .menu-toggle{display:flex;}
+  .nav-cta{display:none;}
+}
+
+section{padding:96px 0;}
+section .wrap{position:relative;}
+.section-head{max-width:660px; margin-bottom:52px;}
+.section-head h2{font-size:clamp(28px,4vw,38px); margin-bottom:14px;}
+.section-head p{color:var(--text-dim); font-size:16.5px; margin:0;}
+.divider{border:none; border-top:1px solid var(--border); margin:0;}
+
+/* ============ HERO ============ */
+#intro{padding-top:72px; padding-bottom:80px;}
+.hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+.hero-copy h1{font-size:clamp(36px,5.6vw,54px); line-height:1.06; margin-bottom:16px;}
+.hero-copy h1 span{color:var(--accent);}
+.hero-role{font-family:var(--mono); color:var(--text-dim); font-size:16px; margin-bottom:10px;}
+.hero-role b{color:var(--text); font-weight:600;}
+.hero-loc{font-family:var(--mono); color:var(--text-faint); font-size:13px; margin-bottom:22px;}
+.hero-desc{color:var(--text-dim); font-size:16.5px; max-width:54ch; margin-bottom:32px;}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+.btn{
+  font-family:var(--mono); font-size:14px; padding:12px 22px; border-radius:8px; text-decoration:none;
+  display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  border:1px solid transparent; cursor:pointer;
+}
+.btn-primary{background:var(--accent); color:#14100a; font-weight:600;}
+.btn-primary:hover{transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,166,35,0.22);}
+.btn-ghost{border-color:var(--border); color:var(--text); background:transparent;}
+.btn-ghost:hover{border-color:var(--text-faint); background:var(--bg-elev);}
+.hero-meta{display:flex; gap:28px; flex-wrap:wrap;}
+.hero-meta div{font-family:var(--mono); font-size:12.5px; color:var(--text-faint);}
+.hero-meta b{display:block; font-family:var(--display); font-size:22px; color:var(--text); font-weight:600;}
+
+.terminal{
+  background:var(--bg-elev); border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+}
+.term-bar{display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid var(--border); background:var(--bg-elev-2);}
+.term-bar span{width:11px; height:11px; border-radius:50%; background:#3a4553;}
+.term-bar span:nth-child(1){background:#F2545B;}
+.term-bar span:nth-child(2){background:#F5A623;}
+.term-bar span:nth-child(3){background:#3FD9B9;}
+.term-title{margin-left:8px; font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+.term-body{padding:20px; font-family:var(--mono); font-size:13.4px; min-height:290px;}
+.term-line{color:var(--text-dim); margin-bottom:6px; white-space:pre-wrap; word-break:break-word;}
+.term-prompt{color:var(--accent-2);}
+.caret{display:inline-block; width:8px; height:15px; background:var(--accent-2); vertical-align:text-bottom; animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ============ ABOUT (bento) ============ */
+.bento{
+  display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:minmax(120px,auto); gap:16px;
+}
+.bento-card{background:var(--bg-elev); border:1px solid var(--border); border-radius:12px; padding:22px;}
+.bento-lg{grid-column:span 4; grid-row:span 2; display:flex; flex-direction:column; justify-content:center;}
+.bento-sm{grid-column:span 2;}
+.bento-wide{grid-column:span 3;}
+@media (max-width:860px){
+  .bento{grid-template-columns:1fr 1fr;}
+  .bento-lg{grid-column:span 2;}
+  .bento-sm{grid-column:span 1;}
+  .bento-wide{grid-column:span 2;}
+}
+@media (max-width:520px){
+  .bento{grid-template-columns:1fr;}
+  .bento-lg,.bento-sm,.bento-wide{grid-column:span 1;}
+}
+.bento-card p{color:var(--text-dim); font-size:15px; margin:0;}
+.bento-card strong{color:var(--text);}
+.stat-num{font-family:var(--display); font-size:32px; font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1;}
+.stat-label{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); margin-top:8px; text-transform:uppercase; letter-spacing:.06em;}
+
+/* ============ SKILLS ============ */
+.skill-cols{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+@media (max-width:900px){.skill-cols{grid-template-columns:1fr 1fr;}}
+@media (max-width:520px){.skill-cols{grid-template-columns:1fr;}}
+.skill-card{background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); padding:20px;}
+.skill-card h3{font-family:var(--mono); font-size:12px; color:var(--accent-2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px; font-weight:600;}
+.skill-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+.skill-card li{font-size:14px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+.skill-card li::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--text-faint); flex-shrink:0;}
+
+/* ============ EXPERIENCE ============ */
+.timeline{position:relative; padding-left:28px; border-left:1px solid var(--border);}
+.tl-item{position:relative; padding-bottom:40px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:""; position:absolute; left:-33px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--bg), 0 0 0 5px var(--border);}
+.tl-when{font-family:var(--mono); font-size:12.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px;}
+.tl-item h3{font-size:19px; margin-bottom:2px;}
+.tl-org{font-family:var(--mono); font-size:13px; color:var(--accent-2); margin-bottom:10px; display:block;}
+.tl-item ul{margin:0; padding-left:18px; color:var(--text-dim); font-size:15px;}
+.tl-item ul li{margin-bottom:6px;}
+.tl-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;}
+.tag{font-family:var(--mono); font-size:11.5px; color:var(--text-dim); border:1px solid var(--border); padding:4px 9px; border-radius:6px; background:var(--bg-elev);}
+
+/* ============ EDUCATION / CERTS ============ */
+.split-2{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+@media (max-width:800px){.split-2{grid-template-columns:1fr;}}
+.info-card{background:var(--bg-elev); border:1px solid var(--border); border-radius:12px; padding:24px;}
+.info-card h3{font-family:var(--mono); font-size:12.5px; color:var(--accent-2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:16px;}
+.edu-item{margin-bottom:16px;}
+.edu-item:last-child{margin-bottom:0;}
+.edu-item h4{font-size:15.5px; margin-bottom:2px; font-family:var(--body); font-weight:600;}
+.edu-item span{font-family:var(--mono); font-size:12.5px; color:var(--text-faint);}
+.cert-list{list-style:none; margin:0; padding:0;}
+.cert-list li{font-size:14px; color:var(--text-dim); padding:9px 0; border-bottom:1px solid var(--border);}
+.cert-list li:last-child{border-bottom:none; padding-bottom:0;}
+.cert-list b{color:var(--text); font-weight:500;}
+
+/* ============ PROJECTS (endpoint cards) ============ */
+.endpoint-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+@media (max-width:800px){.endpoint-grid{grid-template-columns:1fr;}}
+.endpoint-card{
+  background:var(--bg-elev); border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  transition:border-color .15s ease, transform .15s ease;
+}
+.endpoint-card:hover{border-color:#2c3947; transform:translateY(-2px);}
+.ep-head{display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:12.5px;}
+.ep-method{color:var(--bg); background:var(--accent-2); font-weight:700; padding:3px 8px; border-radius:5px; font-size:11px; letter-spacing:.03em;}
+.ep-path{color:var(--text-dim); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.ep-status{color:var(--accent-2); font-weight:600;}
+.ep-shot{
+  aspect-ratio:16/10; background:linear-gradient(160deg, var(--bg-elev-2), var(--bg)); position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.ep-shot img{width:100%; height:100%; object-fit:cover; object-position:top; opacity:0; transition:opacity .4s ease;}
+.ep-shot img.loaded{opacity:1;}
+.ep-shot .ph{font-family:var(--mono); font-size:12px; color:var(--text-faint); text-align:center; padding:0 20px;}
+.ep-body{padding:18px 16px 20px;}
+.ep-body h3{font-size:17.5px; margin-bottom:10px;}
+.ep-row{font-size:13.7px; color:var(--text-dim); margin-bottom:6px;}
+.ep-row b{color:var(--text); font-weight:600;}
+.ep-tags{display:flex; gap:6px; flex-wrap:wrap; margin:12px 0 14px;}
+.ep-link{font-family:var(--mono); font-size:13px; color:var(--accent); text-decoration:none; display:inline-flex; align-items:center; gap:6px;}
+.ep-link:hover{text-decoration:underline;}
+.ep-link.disabled{color:var(--text-faint); cursor:default; pointer-events:none;}
+
+/* compact "more work" list */
+.more-work{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px;}
+@media (max-width:750px){.more-work{grid-template-columns:1fr;}}
+.mw-item{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:var(--bg-elev); border:1px solid var(--border); border-radius:9px; padding:14px 16px;
+}
+.mw-item .mw-name{font-size:14.5px; font-weight:500;}
+.mw-item .mw-tech{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); margin-top:3px;}
+.mw-item a{font-family:var(--mono); font-size:12.5px; color:var(--accent-2); text-decoration:none; white-space:nowrap;}
+.mw-item a:hover{text-decoration:underline;}
+.more-work-head{font-family:var(--mono); font-size:12.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.06em; margin:44px 0 4px;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+@media (max-width:850px){.contact-grid{grid-template-columns:1fr;}}
+.field{margin-bottom:16px;}
+.field label{display:block; font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-bottom:6px; text-transform:uppercase; letter-spacing:.05em;}
+.field input, .field textarea{
+  width:100%; background:var(--bg-elev); border:1px solid var(--border); border-radius:8px; color:var(--text);
+  padding:12px 14px; font-family:var(--body); font-size:14.5px; resize:vertical;
+}
+.field input:focus, .field textarea:focus{border-color:var(--accent-2); outline:none;}
+.contact-note{font-family:var(--mono); font-size:12.5px; color:var(--text-faint); margin-top:14px;}
+.contact-links{display:flex; flex-direction:column; gap:14px;}
+.clink{
+  display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid var(--border); border-radius:10px;
+  background:var(--bg-elev); text-decoration:none; color:var(--text); transition:border-color .15s ease;
+  cursor:pointer; width:100%; text-align:left; font:inherit;
+}
+.clink:hover{border-color:var(--accent-2);}
+.clink svg{flex-shrink:0; color:var(--accent-2);}
+.clink .l1{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em;}
+.clink .l2{font-size:14.5px; font-weight:500;}
+.copy-hint{font-family:var(--mono); font-size:11px; color:var(--accent-2); margin-left:auto; opacity:0; transition:opacity .15s ease;}
+.copy-hint.show{opacity:1;}
+
+/* ============ PLAYGROUND (games) ============ */
+.pg-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;}
+.pg-tab{
+  font-family:var(--mono); font-size:13px; padding:9px 16px; border-radius:8px; border:1px solid var(--border);
+  background:var(--bg-elev); color:var(--text-dim); cursor:pointer;
+}
+.pg-tab[aria-selected="true"]{color:var(--bg); background:var(--accent-2); border-color:var(--accent-2); font-weight:600;}
+.pg-panel{display:none; background:var(--bg-elev); border:1px solid var(--border); border-radius:12px; padding:26px;}
+.pg-panel.active{display:block;}
+.pg-panel h3{margin-bottom:16px; font-size:18px;}
+
+#calc{max-width:300px;}
+#calc .screen{background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:right; font-family:var(--mono); font-size:26px; margin-bottom:12px; overflow-x:auto; min-height:38px;}
+#calc .keys{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+#calc button{
+  font-family:var(--mono); font-size:15px; padding:14px 0; border-radius:8px; border:1px solid var(--border);
+  background:var(--bg-elev-2); color:var(--text); cursor:pointer;
+}
+#calc button:hover{border-color:var(--accent-2);}
+#calc button.op{color:var(--accent-2);}
+#calc button.eq{background:var(--accent-2); color:var(--bg); font-weight:700; grid-column:span 2;}
+
+#ttt-board{display:grid; grid-template-columns:repeat(3,72px); gap:6px;}
+#ttt-board button{
+  width:72px; height:72px; font-family:var(--display); font-size:28px; font-weight:700;
+  background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--accent); cursor:pointer;
+}
+#ttt-status{font-family:var(--mono); font-size:13.5px; color:var(--text-dim); margin-top:14px;}
+#ttt-reset{margin-top:14px;}
+
+#snake-wrap{display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;}
+#snake-canvas{background:var(--bg); border:1px solid var(--border); border-radius:8px;}
+#snake-info{font-family:var(--mono); font-size:13px; color:var(--text-dim); max-width:220px;}
+#snake-score{color:var(--accent); font-size:20px; font-family:var(--display); font-weight:700;}
+
+#mine-board{display:grid; gap:2px;}
+.mine-cell{
+  width:26px; height:26px; background:var(--bg-elev-2); border:1px solid var(--border); border-radius:3px;
+  font-family:var(--mono); font-size:12px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--text);
+}
+.mine-cell.revealed{background:var(--bg); cursor:default;}
+.mine-cell.mine{background:var(--danger); color:#fff;}
+#mine-info{font-family:var(--mono); font-size:13px; color:var(--text-dim); margin-bottom:14px; display:flex; gap:20px;}
+
+/* ============ FOOTER ============ */
+footer#footer{border-top:1px solid var(--border); padding:36px 0; }
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-inner p{margin:0; font-family:var(--mono); font-size:12.5px; color:var(--text-faint);}
+.social{display:flex; gap:10px;}
+.social a{
+  width:38px; height:38px; border:1px solid var(--border); border-radius:8px; display:flex; align-items:center;
+  justify-content:center; color:var(--text-dim); text-decoration:none; transition:border-color .15s ease, color .15s ease;
+}
+.social a:hover{border-color:var(--accent-2); color:var(--accent-2);}
+
+.reveal{opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+</style>
 </head>
+<body>
 
-<body class="is-preload">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
 
-<div id="wrapper">
-
-<!-- HEADER -->
 <header id="header">
-    <div class="logo">
-        <p class="icon particle-heading">SB</p>
-    </div>
-
-    <div class="content">
-        <div class="inner">
-            <h1 class="particle-heading">Shivam Bharti</h1>
-
-            <h2>Backend Engineer | API Architect | Scalable Systems Specialist</h2>
-
-            <p>
-                I design and build high-performance backend systems that power real-world applications.
-                With 5+ years of experience, I specialize in scalable APIs, backend architecture,
-                and database optimization.
-                <br><br>
-                From government infrastructure platforms to business systems — I focus on performance,
-                scalability, and reliability that directly drives business impact.
-            </p>
-        </div>
-    </div>
-
-    <nav>
-        <ul>
-            <li><a href="#intro">welcome</a></li>
-            <li><a href="#about">about me</a></li>
-            <li><a href="#work">my works</a></li>
-            <li><a href="#contact">say hi</a></li>
-        </ul>
+  <div class="nav-inner">
+    <a href="#intro" class="brand"><span class="badge">SB</span> shivam<span style="color:var(--text-faint)">.</span>bharti</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav id="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#about">about</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#experience">experience</a></li>
+        <li><a href="#education">education</a></li>
+        <li><a href="#work">work</a></li>
+        <li><a href="#playground">playground</a></li>
+      </ul>
     </nav>
-
-    <nav class="calculator-nav">
-        <ul>
-            <li><a href="#basic-calc">Calculator</a></li>
-            <li><a href="#tictactoe">Tic Tac Toe</a></li>
-            <li><a href="#snake">Snake</a></li>
-            <li><a href="#minesweeper">Minesweeper</a></li>
-        </ul>
-    </nav>
+    <a href="#contact" class="nav-cta">say hi →</a>
+  </div>
 </header>
 
-<!-- MAIN -->
-<div id="main">
+<main id="main">
 
-<!-- INTRO -->
-<article id="intro">
-    <h2>Engineering Scalable Digital Systems</h2>
+<!-- ============ HERO ============ -->
+<section id="intro">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="status-pill"><span class="pulse"></span>200 OK — open to new roles</div>
+      <h1 style="margin-top:20px;">Shivam Bharti<br><span>builds backends</span> that don't fall over.</h1>
+      <p class="hero-role">Senior PHP Backend Engineer · <b>Laravel</b> · <b>Node.js</b> · <b>ASP.NET MVC</b></p>
+      <p class="hero-loc">Noida, Uttar Pradesh, India</p>
+      <p class="hero-desc">6+ years designing, building and maintaining scalable backend systems — RESTful APIs, secure architectures, and optimized databases for enterprise and government platforms. Currently shipping backend modules for a national highway infrastructure system.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">View the work ↓</a>
+        <a href="./Shivam_Bharti_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download résumé</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>6+</b>years in backend engineering</div>
+        <div><b>13+</b>production systems shipped</div>
+        <div><b>1</b>Government of India platform</div>
+      </div>
+    </div>
 
-    <p>
-        My journey started with building simple web applications, but quickly evolved into designing
-        complex backend architectures handling high-volume data and integrations.
-    </p>
+    <div class="terminal reveal" id="heroTerminal">
+      <div class="term-bar"><span></span><span></span><span></span><div class="term-title">zsh — engineer.api</div></div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </div>
+</section>
 
-    <p>
-        Today, I work on production-grade platforms including government infrastructure systems
-        where scalability, performance, and reliability are critical.
-    </p>
+<hr class="divider" />
 
-    <h3>Core Expertise</h3>
-    <ul>
-        <li><strong>Backend Architecture</strong></li>
-        <li><strong>REST API Development</strong></li>
-        <li><strong>Database Optimization</strong></li>
-        <li><strong>Third-party Integrations</strong></li>
-        <li><strong>Performance Tuning</strong></li>
-    </ul>
-
-    <p>
-        I build systems businesses depend on.
-    </p>
-</article>
-
-<!-- ABOUT -->
+<!-- ============ ABOUT (bento) ============ -->
 <article id="about">
-    <h2>About Me</h2>
-
-    <h3>Backend Engineer with Real-World Impact</h3>
-
-    <p>
-        I am Shivam Bharti, a backend-focused Full Stack Developer with 5+ years of experience
-        building scalable and production-ready systems.
-    </p>
-
-    <p>
-        Currently working on a Government infrastructure platform (RAMS), I design backend
-        architectures, optimize large datasets, and build high-performance APIs.
-    </p>
-
-    <p>
-        My expertise lies in Laravel, Node.js, and integration-driven systems with focus on
-        performance, scalability, and reliability.
-    </p>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>about</div>
+      <h2>Backend engineer with real infrastructure on the line</h2>
+    </div>
+    <div class="bento">
+      <div class="bento-card bento-lg reveal">
+        <p>I'm <strong>Shivam Bharti</strong>, a Senior PHP Backend Engineer with 6+ years designing, developing and maintaining scalable web applications using Core PHP, Laravel, MySQL, SQL Server, RESTful APIs, and MVC architecture.</p>
+        <p style="margin-bottom:0;">I'm currently building backend modules for the <strong>Government of India's Road Asset Management System (RAMS)</strong> — designing REST APIs, optimizing SQL Server queries, and writing HLD/LLD documentation for a system that manages national highway infrastructure data.</p>
+      </div>
+      <div class="bento-card bento-sm reveal">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="bento-card bento-sm reveal">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Companies, Zero Gaps</div>
+      </div>
+      <div class="bento-card bento-wide reveal">
+        <p style="margin:0;">Strong expertise in secure backend architecture, relational database design, payment gateway integration (Razorpay), and query optimization — including a <strong>40% reduction</strong> in inventory sync inconsistencies at a past role.</p>
+      </div>
+      <div class="bento-card bento-wide reveal">
+        <p style="margin:0;">Also built and shipped a <strong>College Management System</strong> serving <strong>5,000+ students</strong>, and an internal backend monitoring tool for API logging and error diagnostics.</p>
+      </div>
+    </div>
+  </div>
 </article>
 
-<!-- WORK -->
-<!-- <article id="work">
-    <h2>Featured Projects</h2>
+<hr class="divider" />
 
-    <div class="project-grid">
-
-        <div class="project-item">
-            <h3>Road Asset Management System</h3>
-            <p><strong>Problem:</strong> Large-scale infrastructure data handling</p>
-            <p><strong>Solution:</strong> Optimized backend & APIs</p>
-            <p><strong>Impact:</strong> Faster system performance</p>
-        </div>
-
-        <div class="project-item">
-            <h3>HKS Party Platform</h3>
-            <p><strong>Problem:</strong> Booking + payment complexity</p>
-            <p><strong>Solution:</strong> API + Razorpay integration</p>
-            <p><strong>Impact:</strong> Smooth booking experience</p>
-        </div>
-
-        <div class="project-item">
-            <h3>Echelon Realtors</h3>
-            <p><strong>Problem:</strong> Property discovery issues</p>
-            <p><strong>Solution:</strong> Map + API integration</p>
-            <p><strong>Impact:</strong> Improved UX</p>
-        </div>
-
-        <div class="project-item">
-            <h3>Brands & Branches</h3>
-            <p><strong>Problem:</strong> Franchise lead management</p>
-            <p><strong>Solution:</strong> Backend modules</p>
-            <p><strong>Impact:</strong> Better conversion</p>
-        </div>
-
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>stack</div>
+      <h2>Response headers, if I had them</h2>
+      <p>The full stack, grouped by what it's actually for.</p>
     </div>
-</article> -->
-
-<article id="work">
-    <h2>Projects & Case Studies</h2>
-
-    <style>
-        .project-row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 40px;
-        }
-
-        .project-left {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 20px;
-        }
-
-        .project-right {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .project-right iframe {
-            width: 100%;
-            height: 420px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            background: #000;
-        }
-
-        .tech {
-            font-size: 12px;
-            color: #aaa;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .project-row {
-                flex-direction: column;
-            }
-
-            .project-right iframe {
-                height: 300px;
-            }
-        }
-    </style>
-
-    <!-- RAMS -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>🏛 Road Asset Management System (Government)</h3>
-            <p><strong>Problem:</strong> Handling massive infrastructure datasets.</p>
-            <p><strong>Solution:</strong> Built scalable backend architecture & optimized APIs.</p>
-            <p><strong>Impact:</strong> Faster processing & improved system performance.</p>
-            <p class="tech">Tech: ASP.NET, MS SQL, API Architecture</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://rams.morthedisha.gov.in/"></iframe>
-            <p><a href="https://rams.morthedisha.gov.in/" target="_blank">🔗 View Live</a></p>
-        </div>
+    <div class="skill-cols">
+      <div class="skill-card reveal">
+        <h3>Languages</h3>
+        <ul><li>PHP</li><li>JavaScript</li><li>Python</li><li>C#</li><li>SQL</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Backend &amp; APIs</h3>
+        <ul><li>Core PHP / Laravel</li><li>Node.js / Express.js</li><li>ASP.NET MVC</li><li>RESTful API design &amp; auth</li><li>Webhooks / JSON APIs</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Databases</h3>
+        <ul><li>MySQL / MS SQL Server</li><li>PostgreSQL / Oracle</li><li>MongoDB</li><li>Schema design &amp; indexing</li><li>Query &amp; performance tuning</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Architecture</h3>
+        <ul><li>MVC / OOP / SOLID</li><li>Design patterns</li><li>Dependency injection</li><li>Middleware &amp; service containers</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Security</h3>
+        <ul><li>Authentication &amp; authorization</li><li>API security</li><li>SQL injection prevention</li><li>CSRF / XSS prevention</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Frontend</h3>
+        <ul><li>HTML5 / CSS3</li><li>JavaScript / jQuery</li><li>Bootstrap</li><li>AJAX</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Tools &amp; Practice</h3>
+        <ul><li>Git / GitHub / Composer</li><li>Postman</li><li>Docker (basic)</li><li>Agile / Scrum, code review</li></ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Cloud &amp; Caching</h3>
+        <ul><li>AWS (basic)</li><li>Redis (basic)</li><li>Caching strategy</li><li>Performance optimization</li></ul>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- HKS Party -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>🎉 HKS Party</h3>
-            <p><strong>Problem:</strong> Complex booking & payment workflows.</p>
-            <p><strong>Solution:</strong> API system + Razorpay integration.</p>
-            <p><strong>Impact:</strong> Seamless booking experience.</p>
-            <p class="tech">Tech: Laravel, Node.js, Razorpay</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://www.hksparty.com/"></iframe>
-        </div>
+<hr class="divider" />
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>experience</div>
+      <h2>Four roles, six years, one straight line up in scope</h2>
+      <p>From single-module PHP applications to a Government of India infrastructure platform.</p>
     </div>
+    <div class="timeline reveal">
 
-    <!-- CDN -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>⚡ CDN Platforms (Echelon & TTP)</h3>
-            <p><strong>Problem:</strong> Slow content delivery.</p>
-            <p><strong>Solution:</strong> CDN architecture for optimized assets.</p>
-            <p><strong>Impact:</strong> Faster loading & scalability.</p>
-            <p class="tech">Tech: CDN, API Integration</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://echelon.cdnmv.com/"></iframe>
-        </div>
-    </div>
-
-    <!-- Echelon -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>🏢 Echelon Realtors</h3>
-            <p><strong>Problem:</strong> Property discovery issues.</p>
-            <p><strong>Solution:</strong> Map + API integration.</p>
-            <p><strong>Impact:</strong> Better UX.</p>
-            <p class="tech">Tech: Laravel, LeafletJS</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://www.echelonrealtors.com/"></iframe>
-        </div>
-    </div>
-
-    <!-- Brands -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>🏪 Brands & Branches</h3>
-            <p><strong>Problem:</strong> Franchise lead management.</p>
-            <p><strong>Solution:</strong> Backend modules.</p>
-            <p><strong>Impact:</strong> Increased conversions.</p>
-            <p class="tech">Tech: Laravel, MySQL</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://brandsandbranches.com/"></iframe>
-        </div>
-    </div>
-
-    <!-- Purity Spa -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>💆‍♂️ Purity Spa</h3>
-            <p><strong>Problem:</strong> Needed online presence.</p>
-            <p><strong>Solution:</strong> Service-based website.</p>
-            <p><strong>Impact:</strong> Increased bookings.</p>
-            <p class="tech">Tech: PHP, Laravel</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://purityspa.in/"></iframe>
-        </div>
-    </div>
-
-    <!-- Perfect Air -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>❄️ Perfect Air</h3>
-            <p><strong>Problem:</strong> No modern service platform.</p>
-            <p><strong>Solution:</strong> Business website.</p>
-            <p><strong>Impact:</strong> More leads.</p>
-            <p class="tech">Tech: Laravel</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://perfectair.in/"></iframe>
-        </div>
-    </div>
-
-    <!-- Castle -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>🏢 Castle Corporate</h3>
-            <p><strong>Problem:</strong> Needed corporate identity.</p>
-            <p><strong>Solution:</strong> Professional website.</p>
-            <p><strong>Impact:</strong> Improved trust.</p>
-            <p class="tech">Tech: Laravel</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://castlecorporate.in/"></iframe>
-        </div>
-    </div>
-
-    <!-- HEC -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>🎓 HEC College</h3>
-            <p><strong>Problem:</strong> Needed student system.</p>
-            <p><strong>Solution:</strong> College website.</p>
-            <p><strong>Impact:</strong> Better admissions.</p>
-            <p class="tech">Tech: PHP, MySQL</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://www.heccollege.edu.in/"></iframe>
-        </div>
-    </div>
-
-    <!-- Geopetral -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>⛽ Geopetral</h3>
-            <p><strong>Problem:</strong> Industrial presence needed.</p>
-            <p><strong>Solution:</strong> Corporate site.</p>
-            <p><strong>Impact:</strong> Strong branding.</p>
-            <p class="tech">Tech: Laravel</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://www.geopetral.com/"></iframe>
-        </div>
-    </div>
-
-    <!-- TradeJerry -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>📦 TradeJerry</h3>
-            <p><strong>Problem:</strong> Digital trading platform.</p>
-            <p><strong>Solution:</strong> Online system.</p>
-            <p><strong>Impact:</strong> User engagement.</p>
-            <p class="tech">Tech: PHP, Laravel</p>
-        </div>
-        <div class="project-right">
-            <iframe src="http://tradejerry.com/"></iframe>
-        </div>
-    </div>
-
-    <!-- D2D -->
-    <div class="project-row">
-        <div class="project-left">
-            <h3>🚚 D2D Work</h3>
-            <p><strong>Problem:</strong> Service connection platform.</p>
-            <p><strong>Solution:</strong> Listing system.</p>
-            <p><strong>Impact:</strong> Better accessibility.</p>
-            <p class="tech">Tech: Laravel</p>
-        </div>
-        <div class="project-right">
-            <iframe src="https://www.d2dwork.com/"></iframe>
-        </div>
-    </div>
-
-</article>
-
-<!-- CONTACT -->
-<article id="contact">
-    <h2>Let’s Work Together</h2>
-
-    <p>
-        Looking for a backend engineer who can build scalable, secure systems?
-        <br><br>
-        I usually respond within minutes.
-    </p>
-
-    <form id="whatsappForm">
-        <div class="fields">
-            <div class="field half">
-                <input type="text" id="name" placeholder="Name" required />
-            </div>
-            <div class="field half">
-                <input type="email" id="email" placeholder="Email" required />
-            </div>
-            <div class="field">
-                <textarea id="message" placeholder="Message"></textarea>
-            </div>
-        </div>
-        <ul class="actions">
-            <li><input type="submit" value="Send Message" class="primary" /></li>
+      <div class="tl-item">
+        <div class="tl-when">August 2025 — Present</div>
+        <h3>Software Developer, Government Project</h3>
+        <span class="tl-org">Cubastion Consulting Pvt. Ltd. · Noida, UP</span>
+        <ul>
+          <li>Designed and developed backend modules for the Government of India Road Asset Management System (RAMS), supporting national highway infrastructure management.</li>
+          <li>Designed RESTful APIs and backend communication layers for secure integration across distributed application modules.</li>
+          <li>Built scalable backend services using PHP Laravel, ASP.NET MVC, C#, and MS SQL Server; prepared HLD/LLD documentation for enterprise backend modules.</li>
+          <li>Optimized backend performance via query tuning, indexing, caching concepts, and API response optimization; debugged production issues on a mission-critical system.</li>
         </ul>
-    </form>
+        <div class="tl-tags"><span class="tag">Laravel</span><span class="tag">ASP.NET MVC</span><span class="tag">C#</span><span class="tag">MS SQL Server</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">June 2023 — August 2025</div>
+        <h3>Full Stack Web Developer</h3>
+        <span class="tl-org">Digitech Solution · Noida, UP</span>
+        <ul>
+          <li>Developed RESTful APIs supporting payment processing, user management, inventory, and order lifecycle.</li>
+          <li>Integrated third-party APIs including Razorpay, shipment providers, SMS gateways, and notification services.</li>
+          <li>Improved backend performance using eager loading, indexing, caching, and query optimization; mentored junior developers and led code reviews.</li>
+        </ul>
+        <div class="tl-tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Node.js</span><span class="tag">Razorpay</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">July 2022 — June 2023</div>
+        <h3>PHP Laravel Developer</h3>
+        <span class="tl-org">Martvalley Services · Noida, UP</span>
+        <ul>
+          <li>Built backend systems for courier tracking, inventory management, and e-commerce, reducing inventory sync inconsistencies by 40% through query optimization.</li>
+          <li>Designed and implemented a College Management System serving 5,000+ students.</li>
+          <li>Automated backend processes with Python scripts for data processing and reporting.</li>
+        </ul>
+        <div class="tl-tags"><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">Python</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">June 2020 — June 2022</div>
+        <h3>Web Developer</h3>
+        <span class="tl-org">Indydotinfotech Pvt. Ltd. · Patna, Bihar</span>
+        <ul>
+          <li>Developed PHP-based business applications using MVC architecture for school management, e-commerce, and administrative systems.</li>
+          <li>Designed relational database schemas and RESTful APIs enabling communication between application modules.</li>
+        </ul>
+        <div class="tl-tags"><span class="tag">PHP</span><span class="tag">MVC</span><span class="tag">MySQL</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ============ EDUCATION & CERTIFICATIONS ============ -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>education</div>
+      <h2>Formal training, kept current</h2>
+    </div>
+    <div class="split-2">
+      <div class="info-card reveal">
+        <h3>Degrees</h3>
+        <div class="edu-item">
+          <h4>Master of Computer Applications (MCA)</h4>
+          <span>A.N. College, Patliputra University · 2018 – 2021</span>
+        </div>
+        <div class="edu-item">
+          <h4>Bachelor of Computer Applications (BCA)</h4>
+          <span>A.B. College, Magadh University · 2013 – 2016</span>
+        </div>
+      </div>
+      <div class="info-card reveal">
+        <h3>Certifications</h3>
+        <ul class="cert-list">
+          <li><b>C++ Certification</b> — IIT Bombay</li>
+          <li><b>Programming for Everybody</b> — University of Michigan (Coursera)</li>
+          <li><b>Introduction to Relational Databases and SQL</b> — University of Michigan (Coursera)</li>
+          <li><b>Python Data Structures</b> — University of Michigan (Coursera)</li>
+          <li><b>Data Processing and Visualization with Python</b> — University of Michigan (Coursera)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ============ WORK ============ -->
+<article id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>selected work</div>
+      <h2>Projects, served as endpoints</h2>
+      <p>Static previews only — no live embeds. The old page loaded twelve full third-party websites in iframes at once; this loads one small screenshot per project, only when it scrolls into view.</p>
+    </div>
+    <div class="endpoint-grid" id="projectGrid"></div>
+
+    <div class="more-work-head reveal">More client work</div>
+    <div class="more-work reveal" id="moreWork"></div>
+  </div>
 </article>
 
-<!-- KEEP ORIGINAL GAMES STRUCTURE -->
-<article id="basic-calc"><h2 class="major">Basic Calculator</h2></article>
-<article id="tictactoe"><h3>Tic Tac Toe</h3></article>
-<article id="snake"><h3>Snake Game</h3></article>
-<article id="minesweeper"><h3>Minesweeper</h3></article>
+<hr class="divider" />
 
-</div>
+<!-- ============ PLAYGROUND ============ -->
+<section id="playground">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>playground</div>
+      <h2>Small builds, kept lightweight</h2>
+      <p>Four tiny games, vanilla JS, no dependencies. Only the open tab runs — the rest stay paused.</p>
+    </div>
+    <div class="pg-tabs reveal" role="tablist" aria-label="Playground games">
+      <button class="pg-tab" role="tab" aria-selected="true" data-target="basic-calc">Calculator</button>
+      <button class="pg-tab" role="tab" aria-selected="false" data-target="tictactoe">Tic Tac Toe</button>
+      <button class="pg-tab" role="tab" aria-selected="false" data-target="snake">Snake</button>
+      <button class="pg-tab" role="tab" aria-selected="false" data-target="minesweeper">Minesweeper</button>
+    </div>
 
-<!-- FOOTER -->
+    <div class="pg-panel active reveal" id="basic-calc">
+      <h3>Basic Calculator</h3>
+      <div id="calc">
+        <div class="screen" id="calcScreen">0</div>
+        <div class="keys">
+          <button data-k="clear">C</button><button data-k="back">⌫</button><button data-k="%" class="op">%</button><button data-k="/" class="op">÷</button>
+          <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="*" class="op">×</button>
+          <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="-" class="op">−</button>
+          <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="+" class="op">+</button>
+          <button data-k="0">0</button><button data-k=".">.</button><button data-k="=" class="eq">=</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-panel" id="tictactoe">
+      <h3>Tic Tac Toe</h3>
+      <div id="ttt-board"></div>
+      <div id="ttt-status">Your turn — X</div>
+      <button class="btn btn-ghost" id="ttt-reset">Reset</button>
+    </div>
+
+    <div class="pg-panel" id="snake">
+      <h3>Snake</h3>
+      <div id="snake-wrap">
+        <canvas id="snake-canvas" width="300" height="300"></canvas>
+        <div id="snake-info">
+          <div>Score: <span id="snake-score">0</span></div>
+          <p style="margin-top:10px;">Arrow keys to move. Click the board first to focus it.</p>
+          <button class="btn btn-ghost" id="snake-reset" style="margin-top:6px;">Restart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-panel" id="minesweeper">
+      <h3>Minesweeper</h3>
+      <div id="mine-info"><span>💣 <span id="mine-count">10</span></span><button class="btn btn-ghost" id="mine-reset">Restart</button></div>
+      <div id="mine-board"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ============ CONTACT ============ -->
+<article id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span>contact</div>
+      <h2 style="font-size:clamp(26px,3.4vw,34px); margin-bottom:14px;">Let's ship something reliable.</h2>
+      <p style="color:var(--text-dim); margin-bottom:28px;">Looking for a backend engineer who can build scalable, secure systems? I usually respond within minutes.</p>
+
+      <form id="whatsappForm">
+        <div class="field"><label for="name">Name</label><input type="text" id="name" required /></div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" required /></div>
+        <div class="field"><label for="message">Message</label><textarea id="message" rows="4" placeholder="Tell me about the project..."></textarea></div>
+        <button type="submit" class="btn btn-primary">Send via WhatsApp →</button>
+      </form>
+      <p class="contact-note">Submitting opens WhatsApp with your message pre-filled — nothing is stored or sent anywhere else.</p>
+    </div>
+
+    <div class="contact-links reveal">
+      <button type="button" class="clink" id="copyEmailBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        <div><div class="l1">Email</div><div class="l2">shivamjobs@outlook.com</div></div>
+        <span class="copy-hint" id="copyHint">copied ✓</span>
+      </button>
+      <a class="clink" href="https://api.whatsapp.com/send?phone=917870660390" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.65-4.95A9 9 0 1 1 8.6 19.4z"/></svg>
+        <div><div class="l1">WhatsApp</div><div class="l2">+91 78706 60390</div></div>
+      </a>
+      <a class="clink" href="https://www.linkedin.com/in/shivambharti/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10" x2="8" y2="16"/><circle cx="8" cy="7" r="0.6" fill="currentColor"/><path d="M12 16v-3.5a2 2 0 0 1 4 0V16"/></svg>
+        <div><div class="l1">LinkedIn</div><div class="l2">/in/shivambharti</div></div>
+      </a>
+      <a class="clink" href="https://github.com/theshivambharti" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        <div><div class="l1">GitHub</div><div class="l2">/theshivambharti</div></div>
+      </a>
+      <a class="clink" href="./Shivam_Bharti_Resume.pdf" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        <div><div class="l1">Résumé</div><div class="l2">Download PDF</div></div>
+      </a>
+    </div>
+  </div>
+</article>
+
+</main>
+
 <footer id="footer">
-    <ul class="icons">
-        <li><a href="https://www.linkedin.com/in/shivambharti/" class="icon fa-linkedin"></a></li>
-        <li><a href="https://github.com/theshivambharti" class="icon fa-github"></a></li>
-        <li><a href="https://api.whatsapp.com/send?phone=917870660390" class="icon fa-whatsapp"></a></li>
-    </ul>
+  <div class="wrap footer-inner">
+    <p>© <span id="year"></span> Shivam Bharti. Built to load fast.</p>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/shivambharti/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10" x2="8" y2="16"/><circle cx="8" cy="7" r="0.6" fill="currentColor"/><path d="M12 16v-3.5a2 2 0 0 1 4 0V16"/></svg></a>
+      <a href="https://github.com/theshivambharti" aria-label="GitHub" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+      <a href="https://api.whatsapp.com/send?phone=917870660390" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.65-4.95A9 9 0 1 1 8.6 19.4z"/></svg></a>
+    </div>
+  </div>
 </footer>
 
-</div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
-<!-- SCRIPTS -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script src="assets/js/particles-config.js"></script>
-<script src="assets/js/calculator.js"></script>
-<script src="assets/js/tictactoe.js"></script>
-<script src="assets/js/minesweeper.js"></script>
-<script src="assets/js/snake.js"></script>
-<script src="assets/js/whatsapp.js"></script>
+/* ---------- mobile nav ---------- */
+const menuToggle = document.getElementById('menuToggle');
+const primaryNav = document.getElementById('primary-nav');
+menuToggle.addEventListener('click', () => {
+  const open = primaryNav.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', open);
+});
+primaryNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  primaryNav.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false');
+}));
+
+/* ---------- hero terminal typing animation ---------- */
+(function(){
+  const body = document.getElementById('termBody');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lines = [
+    {type:'cmd', text:'curl https://shivambharti.dev/api/engineer'},
+    {type:'json', text:'{'},
+    {type:'json', text:'  "name": "Shivam Bharti",'},
+    {type:'json', text:'  "role": "Senior PHP Backend Engineer",'},
+    {type:'json', text:'  "experience_years": 6,'},
+    {type:'json', text:'  "current_project": "RAMS (Govt. of India)",'},
+    {type:'json', text:'  "stack": ["Laravel", "Node.js", "ASP.NET MVC", "MS SQL"],'},
+    {type:'json', text:'  "status": "200 OK"'},
+    {type:'json', text:'}'},
+  ];
+  if (reduced){
+    body.innerHTML = lines.map(l => `<div class="term-line">${l.type==='cmd' ? '<span class="term-prompt">$</span> '+l.text : l.text}</div>`).join('');
+    return;
+  }
+  let li = 0;
+  function typeLine(){
+    if (li >= lines.length){
+      const c = document.createElement('span'); c.className='caret'; body.appendChild(c);
+      return;
+    }
+    const line = lines[li];
+    const div = document.createElement('div');
+    div.className = 'term-line';
+    body.appendChild(div);
+    const prefix = line.type === 'cmd' ? '<span class="term-prompt">$</span> ' : '';
+    let i = 0;
+    const speed = line.type === 'cmd' ? 32 : 8;
+    (function step(){
+      div.innerHTML = prefix + line.text.slice(0, i);
+      i++;
+      if (i <= line.text.length){ setTimeout(step, speed); }
+      else { li++; setTimeout(typeLine, line.type==='cmd' ? 260 : 40); }
+    })();
+  }
+  typeLine();
+})();
+
+/* ---------- projects data ---------- */
+const projects = [
+  {method:'GET', path:'/projects/rams', name:'Road Asset Management System (Government of India)', problem:'National highway infrastructure data at a scale that breaks naive backends.', solution:'Built REST APIs and backend communication layers across distributed modules, with HLD/LLD documentation for each.', impact:'Improved reporting efficiency through SQL Server query tuning and indexing.', tech:['ASP.NET MVC','C#','MS SQL Server','Laravel'], url:'https://rams.morthedisha.gov.in/'},
+  {method:'POST', path:'/projects/hks-party', name:'HKS Party — Event Booking Platform', problem:'Vendor onboarding, bookings, and payments all needed to work together without breaking.', solution:'Built REST APIs for vendor onboarding, booking management, and Razorpay-backed payment workflows.', impact:'Secure transaction processing with a full order lifecycle, and faster API response times.', tech:['Laravel','Node.js','Razorpay','MySQL'], url:'https://www.hksparty.com/'},
+  {method:'GET', path:'/projects/echelon-realtors', name:'Echelon Realtors — Real Estate Platform', problem:'Property discovery needed to feel spatial, not just a list.', solution:'Built REST APIs for listings and lead management, plus LeafletJS map integration for property discovery.', impact:'Smoother inquiry processing and a more usable search experience.', tech:['Laravel','LeafletJS','MySQL'], url:'https://www.echelonrealtors.com/'},
+  {method:'POST', path:'/projects/brands-branches', name:'Brands & Branches — Franchise Discovery', problem:'Franchise leads and business listings needed a real backend, not a spreadsheet.', solution:'Built backend modules for franchise discovery, lead management, and listing workflows.', impact:'Optimized SQL queries improved search and listing retrieval performance.', tech:['Laravel','MySQL','REST APIs'], url:'https://brandsandbranches.com/'},
+  {method:'GET', path:'/projects/monitoring-tool', name:'Internal Backend Monitoring Tool', problem:'Production issues were hard to trace across services.', solution:'Built an internal tool for API logging, request tracking, and centralized error diagnostics.', impact:'Performance monitoring modules that helped surface bottlenecks before they became incidents.', tech:['Laravel','Node.js','Docker'], url:null},
+];
+
+const moreWorkList = [
+  {name:'CDN Platforms (Echelon & TTP)', tech:'CDN Architecture', url:'https://echelon.cdnmv.com/'},
+  {name:'Purity Spa', tech:'PHP, Laravel', url:'https://purityspa.in/'},
+  {name:'Perfect Air', tech:'Laravel', url:'https://perfectair.in/'},
+  {name:'Castle Corporate', tech:'Laravel', url:'https://castlecorporate.in/'},
+  {name:'HEC College', tech:'PHP, MySQL', url:'https://www.heccollege.edu.in/'},
+  {name:'Geopetral', tech:'Laravel', url:'https://www.geopetral.com/'},
+  {name:'TradeJerry', tech:'PHP, Laravel', url:'http://tradejerry.com/'},
+  {name:'D2D Work', tech:'Laravel', url:'https://www.d2dwork.com/'},
+];
+
+function screenshotUrl(url){
+  return 'https://api.microlink.io/?url=' + encodeURIComponent(url) + '&screenshot=true&meta=false&embed=screenshot.url';
+}
+
+/* ---------- render featured project cards ---------- */
+const grid = document.getElementById('projectGrid');
+const frag = document.createDocumentFragment();
+projects.forEach((p) => {
+  const card = document.createElement('div');
+  card.className = 'endpoint-card reveal';
+  const shotHtml = p.url
+    ? `<span class="ph">loading preview…</span><img data-src="${screenshotUrl(p.url)}" alt="Screenshot of ${p.name}" loading="lazy" />`
+    : `<span class="ph">Internal tool — no public preview</span>`;
+  const linkHtml = p.url
+    ? `<a class="ep-link" href="${p.url}" target="_blank" rel="noopener">View live →</a>`
+    : `<span class="ep-link disabled">Private / internal only</span>`;
+  card.innerHTML = `
+    <div class="ep-head">
+      <span class="ep-method">${p.method}</span>
+      <span class="ep-path">${p.path}</span>
+      <span class="ep-status">200</span>
+    </div>
+    <div class="ep-shot">${shotHtml}</div>
+    <div class="ep-body">
+      <h3>${p.name}</h3>
+      <div class="ep-row"><b>Problem:</b> ${p.problem}</div>
+      <div class="ep-row"><b>Solution:</b> ${p.solution}</div>
+      <div class="ep-row"><b>Impact:</b> ${p.impact}</div>
+      <div class="ep-tags">${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      ${linkHtml}
+    </div>
+  `;
+  frag.appendChild(card);
+});
+grid.appendChild(frag);
+
+/* ---------- render "more work" compact list ---------- */
+const moreWorkEl = document.getElementById('moreWork');
+const mwFrag = document.createDocumentFragment();
+moreWorkList.forEach(item => {
+  const row = document.createElement('div');
+  row.className = 'mw-item';
+  row.innerHTML = `
+    <div><div class="mw-name">${item.name}</div><div class="mw-tech">${item.tech}</div></div>
+    <a href="${item.url}" target="_blank" rel="noopener">Visit →</a>
+  `;
+  mwFrag.appendChild(row);
+});
+moreWorkEl.appendChild(mwFrag);
+
+/* only fetch each screenshot image when its card scrolls near viewport */
+if ('IntersectionObserver' in window){
+  const shotIO = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        const img = e.target.querySelector('img[data-src]');
+        if (img){
+          img.src = img.dataset.src;
+          img.addEventListener('load', () => img.classList.add('loaded'));
+          img.removeAttribute('data-src');
+        }
+        obs.unobserve(e.target);
+      }
+    });
+  }, {rootMargin:'200px'});
+  document.querySelectorAll('.endpoint-card').forEach(c => shotIO.observe(c));
+} else {
+  document.querySelectorAll('.ep-shot img[data-src]').forEach(img => { img.src = img.dataset.src; img.classList.add('loaded'); });
+}
+
+/* ---------- scroll reveal (set up AFTER all dynamic content exists) ---------- */
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(el => io.observe(el));
+} else { revealEls.forEach(el => el.classList.add('in')); }
+
+/* ---------- playground tabs (pause inactive games) ---------- */
+const tabs = document.querySelectorAll('.pg-tab');
+const panels = document.querySelectorAll('.pg-panel');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+    tab.setAttribute('aria-selected', 'true');
+    panels.forEach(p => p.classList.remove('active'));
+    document.getElementById(tab.dataset.target).classList.add('active');
+    window.dispatchEvent(new CustomEvent('pgtab', {detail: tab.dataset.target}));
+  });
+});
+
+/* ---------- calculator ---------- */
+(function(){
+  const screen = document.getElementById('calcScreen');
+  let expr = '';
+  document.querySelectorAll('#calc button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.k;
+      if (k === 'clear'){ expr = ''; }
+      else if (k === 'back'){ expr = expr.slice(0, -1); }
+      else if (k === '='){
+        try {
+          if (!/^[0-9+\-*/.%\s]+$/.test(expr)) throw new Error('bad');
+          expr = String(Function('"use strict"; return (' + expr.replace(/%/g, '/100') + ')')());
+        } catch(e){ expr = 'Error'; }
+      } else { expr = (expr === 'Error' ? '' : expr) + k; }
+      screen.textContent = expr === '' ? '0' : expr;
+    });
+  });
+})();
+
+/* ---------- tic tac toe ---------- */
+(function(){
+  const boardEl = document.getElementById('ttt-board');
+  const statusEl = document.getElementById('ttt-status');
+  let board, turn, over;
+  function init(){
+    board = Array(9).fill(null); turn = 'X'; over = false;
+    boardEl.innerHTML = '';
+    board.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.addEventListener('click', () => move(i));
+      boardEl.appendChild(b);
+    });
+    statusEl.textContent = 'Your turn — X';
+  }
+  const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  function move(i){
+    if (over || board[i]) return;
+    board[i] = turn;
+    boardEl.children[i].textContent = turn;
+    const win = wins.find(w => w.every(x => board[x] === turn));
+    if (win){ statusEl.textContent = turn + ' wins!'; over = true; return; }
+    if (board.every(c => c)){ statusEl.textContent = "It's a draw."; over = true; return; }
+    turn = turn === 'X' ? 'O' : 'X';
+    statusEl.textContent = 'Your turn — ' + turn;
+  }
+  document.getElementById('ttt-reset').addEventListener('click', init);
+  init();
+})();
+
+/* ---------- snake ---------- */
+(function(){
+  const canvas = document.getElementById('snake-canvas');
+  const ctx = canvas.getContext('2d');
+  const size = 15, cells = 20;
+  let snake, dir, nextDir, food, score, loopId, running = false;
+
+  function place(){
+    return {x: Math.floor(Math.random()*cells), y: Math.floor(Math.random()*cells)};
+  }
+  function init(){
+    snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}];
+    dir = {x:1,y:0}; nextDir = {x:1,y:0};
+    food = place(); score = 0;
+    document.getElementById('snake-score').textContent = score;
+    draw();
+  }
+  function draw(){
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#F5A623';
+    ctx.fillRect(food.x*size, food.y*size, size-1, size-1);
+    ctx.fillStyle = '#3FD9B9';
+    snake.forEach((s) => ctx.fillRect(s.x*size, s.y*size, size-1, size-1));
+  }
+  function tick(){
+    dir = nextDir;
+    const head = {x: snake[0].x + dir.x, y: snake[0].y + dir.y};
+    if (head.x < 0 || head.y < 0 || head.x >= cells || head.y >= cells || snake.some(s => s.x===head.x && s.y===head.y)){
+      stop(); return;
+    }
+    snake.unshift(head);
+    if (head.x === food.x && head.y === food.y){
+      score++; document.getElementById('snake-score').textContent = score; food = place();
+    } else { snake.pop(); }
+    draw();
+  }
+  function start(){ if (running) return; running = true; loopId = setInterval(tick, 110); }
+  function stop(){ running = false; clearInterval(loopId); }
+
+  canvas.addEventListener('click', () => { canvas.focus(); start(); });
+  canvas.setAttribute('tabindex', '0');
+  canvas.addEventListener('keydown', e => {
+    const map = {ArrowUp:{x:0,y:-1}, ArrowDown:{x:0,y:1}, ArrowLeft:{x:-1,y:0}, ArrowRight:{x:1,y:0}};
+    const d = map[e.key];
+    if (d && !(d.x === -dir.x && d.y === -dir.y)){ nextDir = d; e.preventDefault(); }
+    start();
+  });
+  document.getElementById('snake-reset').addEventListener('click', () => { stop(); init(); });
+  window.addEventListener('pgtab', e => { if (e.detail !== 'snake') stop(); });
+  init();
+})();
+
+/* ---------- minesweeper ---------- */
+(function(){
+  const cols = 8, rows = 8, mineCount = 10;
+  const boardEl = document.getElementById('mine-board');
+  boardEl.style.gridTemplateColumns = `repeat(${cols}, 26px)`;
+  let cells, dead;
+
+  function build(){
+    dead = false;
+    document.getElementById('mine-count').textContent = mineCount;
+    cells = Array.from({length: rows*cols}, () => ({mine:false, adj:0, revealed:false}));
+    let placed = 0;
+    while (placed < mineCount){
+      const idx = Math.floor(Math.random()*cells.length);
+      if (!cells[idx].mine){ cells[idx].mine = true; placed++; }
+    }
+    for (let r=0;r<rows;r++) for (let c=0;c<cols;c++){
+      if (cells[r*cols+c].mine) continue;
+      let n=0;
+      for (let dr=-1;dr<=1;dr++) for (let dc=-1;dc<=1;dc++){
+        const rr=r+dr, cc=c+dc;
+        if (rr>=0&&rr<rows&&cc>=0&&cc<cols&&cells[rr*cols+cc].mine) n++;
+      }
+      cells[r*cols+c].adj = n;
+    }
+    render();
+  }
+  function render(){
+    boardEl.innerHTML = '';
+    cells.forEach((cell, i) => {
+      const d = document.createElement('div');
+      d.className = 'mine-cell';
+      if (cell.revealed){
+        d.classList.add('revealed');
+        if (cell.mine){ d.classList.add('mine'); d.textContent = '💣'; }
+        else if (cell.adj){ d.textContent = cell.adj; }
+      }
+      d.addEventListener('click', () => reveal(i));
+      boardEl.appendChild(d);
+    });
+  }
+  function reveal(i){
+    if (dead || cells[i].revealed) return;
+    cells[i].revealed = true;
+    if (cells[i].mine){ dead = true; cells.forEach(c => { if (c.mine) c.revealed = true; }); render(); return; }
+    if (cells[i].adj === 0){
+      const r = Math.floor(i/cols), c = i%cols;
+      for (let dr=-1;dr<=1;dr++) for (let dc=-1;dc<=1;dc++){
+        const rr=r+dr, cc=c+dc;
+        if (rr>=0&&rr<rows&&cc>=0&&cc<cols){ const ni = rr*cols+cc; if (!cells[ni].revealed && !cells[ni].mine) reveal(ni); }
+      }
+    }
+    render();
+  }
+  document.getElementById('mine-reset').addEventListener('click', build);
+  build();
+})();
+
+/* ---------- copy email ---------- */
+document.getElementById('copyEmailBtn').addEventListener('click', () => {
+  const hint = document.getElementById('copyHint');
+  navigator.clipboard.writeText('shivamjobs@outlook.com').then(() => {
+    hint.classList.add('show');
+    setTimeout(() => hint.classList.remove('show'), 1600);
+  });
+});
+
+/* ---------- whatsapp contact form ---------- */
+document.getElementById('whatsappForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const text = `Hi Shivam, I'm ${name} (${email}).\n${message}`;
+  window.open('https://api.whatsapp.com/send?phone=917870660390&text=' + encodeURIComponent(text), '_blank');
+});
+</script>
 
 </body>
 </html>
